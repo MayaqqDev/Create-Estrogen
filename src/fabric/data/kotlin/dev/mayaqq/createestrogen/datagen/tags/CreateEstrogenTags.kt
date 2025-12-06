@@ -11,6 +11,7 @@ import net.minecraft.tags.BlockTags
 import java.util.concurrent.CompletableFuture
 import dev.mayaqq.createestrogen.content.CreateEstrogenBlocks
 import dev.mayaqq.createestrogen.content.CreateEstrogenItems
+import dev.mayaqq.createestrogen.content.CreateEstrogenTags
 import uwu.serenity.kritter.api.entry.RegistryEntry
 
 class CreateEstrogenBlockTags(
@@ -41,5 +42,8 @@ class CreateEstrogenItemTags(
 
         getOrCreateTagBuilder(AllTags.AllItemTags.PACKAGES.tag)
             .add(*CreateEstrogenItems.allEstrogenPillBoxes.map(RegistryEntry<PackageItem>::value).toTypedArray())
+        getOrCreateTagBuilder(CreateEstrogenTags.Item.EAR_GOGGLES)
+            .add(CreateEstrogenItems.catEarGoggles)
+        getOrCreateTagBuilder(EstrogenTags.Items.CURIOS_THIGHS)
     }
 }
