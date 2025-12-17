@@ -1,6 +1,5 @@
 package dev.mayaqq.createestrogen.mixin;
 
-import com.llamalad7.mixinextras.sugar.Local;
 import com.simibubi.create.content.kinetics.base.IRotate;
 import net.minecraft.ChatFormatting;
 import org.spongepowered.asm.mixin.*;
