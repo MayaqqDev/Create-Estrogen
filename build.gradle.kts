@@ -46,13 +46,8 @@ repositories {
     maven(url = "https://maven.figuramc.org/releases") { name = "Figura Maven"; description = "Figura" } // Second last cs figura misconfigured their maven
     maven(url = "https://mvn.devos.one/releases/") { name = "Create Fabric Porting Lib" }
     maven(url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven") { name = "Forge Config API PORT" }
+    maven(url ="https://maven.latvian.dev/releases") {name = "latvian.dev"; description = "KubeJS"}
     maven(url = "https://jitpack.io/") { name = "Jitpack maven"; description = "Mixin Extras & Fabric ASM" } //NOTE: LEAVE THIS AS LAST
-    maven(url ="https://maven.latvian.dev/releases") {
-        content {
-            includeGroup("dev.latvian.mods")
-            includeGroup ("dev.latvian.apps")
-        }
-    }
     mavenLocal()
     mavenCentral()
 }
