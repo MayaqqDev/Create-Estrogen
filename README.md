@@ -49,6 +49,8 @@ Create: Estrogen features many different mechanics and mainly recipes, main Bloc
 
 You can read more about this mods features, mechanics and some guides on the [wiki](https://github.com/MayaqqDev/Estrogen/wiki)!
 
+[KubeJs Support Docs](KubeJS.md)
+
 This mod is still in development, so expect some bugs and missing features. If you find any bugs or suggestions, please
 report them on my [discord](https://discord.gg/hue). This mod has been inspired by the game Celeste and I would
 love to thank to everyone who contributed with ideas and features!

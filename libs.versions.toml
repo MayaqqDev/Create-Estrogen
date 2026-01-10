@@ -13,7 +13,7 @@ kritter = "0.1.12+1.20.1"
 kotlinx-serialization="1.8.0"
 kotlinx-coroutines="1.10.1"
 parchment = "2023.09.03"
-devauth = "1.2.1"
+devauth = "1.2.2"
 trinkets = "3.7.1"
 rei = "12.1.785"
 emi = "1.0.29+1.20.1"
@@ -33,17 +33,18 @@ cobblemon = "1.5.2+1.20.1"
 mixin = "0.8.5"
 iris = "1.7.5+1.20.1"
 flywheel = "1.0.5"
-cynosure = "0.1.9"
+cynosure = "0.1.13"
 kittyconfig = "1.2.16"
 mixin_constrains = "1.0.8"
 ponder = "1.0.91"
+kubejs = "2001.6.5-build.16"
 # Fabric Only Dependencies
 fapi = "0.91.0"
 modmenu = "7.2.2"
 cardinal = "5.2.3"
 jei_file_id_fabric = "5101365"
 flk = "1.11.0+kotlin.2.0.0"
-estrogen = "5.0.0+1.20.1-SNAPSHOT-weughbiweughiwaeuhioaweuhi.2"
+estrogen = "5.0.5+1.20.1"
 create_fabric = "6.0.8.0+build.1734-mc1.20.1"
 # Forge Only Dependencies
 registrate_forge = "MC1.20-1.3.3"
@@ -57,6 +58,7 @@ klf = "2.10.5-k2.2.20-2.0+forge"
 [libraries]
 
 # Common Dependencies
+kubejs = {group = "dev.latvian.mods", name = "kubejs", version.ref ="kubejs"}
 estrogen = { group = "dev.mayaqq", name = "estrogen", version.ref = "estrogen" }
 botarium = { module = "earth.terrarium.botarium:botarium-common-1.20.1", version.ref = "botarium" }
 ponder  = {group = "net.createmod.ponder", name = "Ponder-Common-1.20.1", version.ref = "ponder"}
@@ -97,6 +99,7 @@ fabric-flywheel = { module = "dev.engine-room.flywheel:flywheel-fabric-1.20.1", 
 fabric-botarium = { module = "earth.terrarium.botarium:botarium-fabric-1.20.1", version.ref = "botarium" }
 fabric-ponder = { group = "net.createmod.ponder", name = "Ponder-Fabric-1.20.1", version.ref = "ponder" }
 fabric-estrogen = { group = "dev.mayaqq", name = "estrogen", version.ref = "estrogen" }
+fabric-kubejs = {group = "dev.latvian.mods", name = "kubejs-fabric", version.ref ="kubejs"}
 
 
 # Forge depencencies
@@ -119,6 +122,7 @@ forge-flywheel-api = { module = "dev.engine-room.flywheel:flywheel-forge-api-1.2
 forge-flywheel = { module = "dev.engine-room.flywheel:flywheel-forge-1.20.1", version.ref = "flywheel" }
 # forge-cynosure = { module = "dev.mayaqq.cynosure:cynosure-forge", version.ref = "cynosure" }
 forge-botarium = { module = "earth.terrarium.botarium:botarium-forge-1.20.1", version.ref = "botarium" }
+forge-kubejs = {group = "dev.latvian.mods", name = "kubejs-forge", version.ref ="kubejs"}
 
 [bundles]
 fabric-cardinalComponents = [ "fabric-cardinalComponents-base", "fabric-cardinalComponents-entity" ]
