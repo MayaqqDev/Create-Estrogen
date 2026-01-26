@@ -3,7 +3,10 @@ package dev.mayaqq.createestrogen.content
 import com.simibubi.create.content.logistics.box.PackageItem
 import com.simibubi.create.content.processing.sequenced.SequencedAssemblyItem
 import dev.mayaqq.createestrogen.CreateEstrogen
+import dev.mayaqq.createestrogen.client.content.entityRenderers.goggles.CatEarGogglesBaubleRenderer
+import dev.mayaqq.createestrogen.content.items.CatEarGoggles
 import dev.mayaqq.createestrogen.content.packages.CreateEstrogenPackageStyles
+import dev.mayaqq.estrogen.content.baubleWithRenderer
 import net.minecraft.core.registries.Registries
 import net.minecraft.world.item.Item
 import uwu.serenity.kritter.api.Registrar
@@ -22,6 +25,14 @@ object CreateEstrogenItems: Registrar<Item> by CreateEstrogen..Registries.ITEM {
             stacksTo(1)
         }
     }
+
+    val CatEarGoggles by item("cat_ear_goggles", ::CatEarGoggles) {
+        properties {
+            stacksTo(1)
+            baubleWithRenderer(::CatEarGogglesBaubleRenderer)
+        }
+    }
+
     val allEstrogenPillBoxes: List<RegistryEntry<PackageItem>> =
         CreateEstrogenPackageStyles.estrogenPillStyles.map { style ->
             style.itemId
