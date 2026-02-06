@@ -22,7 +22,7 @@
 </a>
 </div>
 
-## Previously, this mod was contained in Estrogen, please install [Estrogen](https://modrinth.com/mods/estrogen) for this mod to work
+## Previously, this mod was contained in Estrogen, please install [Estrogen](https://modrinth.com/mod/estrogen) for this mod to work
 
 ## `Information`
 
