@@ -33,7 +33,8 @@ class CentrifugeBlock(properties: Properties) : KineticBlock(properties), IBE<Ce
 
     override fun getBlockEntityClass(): Class<CentrifugeBlockEntity> = CentrifugeBlockEntity::class.java
 
-    override fun getBlockEntityType(): BlockEntityType<out CentrifugeBlockEntity> = CreateEstrogenBlockEntities.Centrifuge
+    override fun getBlockEntityType(): BlockEntityType<out CentrifugeBlockEntity> =
+        CreateEstrogenBlockEntities.Centrifuge.getOrThrow()
 
     override fun setPlacedBy(pLevel: Level, pPos: BlockPos, pState: BlockState, pPlacer: LivingEntity?, pStack: ItemStack) {
         super.setPlacedBy(pLevel, pPos, pState, pPlacer, pStack)
@@ -46,7 +47,7 @@ class CentrifugeBlock(properties: Properties) : KineticBlock(properties), IBE<Ce
 
     override fun isSmallCog(): Boolean = true
     @Deprecated("Deprecated in Java")
-    override fun isPathfindable(p0: BlockState, p1: BlockGetter, p2: BlockPos, p3: PathComputationType): Boolean = false
+    override fun isPathfindable(p0: BlockState, p1: PathComputationType): Boolean = false
 
     @Deprecated("Deprecated in Java")
     override fun getShape(p0: BlockState, p1: BlockGetter, p2: BlockPos, p3: CollisionContext): VoxelShape = Shapes.block()

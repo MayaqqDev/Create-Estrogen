@@ -1,12 +1,12 @@
-package dev.mayaqq.createestrogen.forge.mixin;
+package dev.mayaqq.createestrogen.neoforge.mixin;
 
 import com.simibubi.create.content.logistics.box.PackageItem;
 import com.simibubi.create.content.logistics.box.PackageStyles;
 import dev.mayaqq.createestrogen.content.packages.CreateEstrogenPackageStyles;
-import dev.mayaqq.createestrogen.forge.extensions.ItemHandlerWrapper;
+import dev.mayaqq.createestrogen.neoforge.extensions.ItemHandlerWrapper;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.items.ItemStackHandler;
+import net.neoforged.neoforge.items.ItemStackHandler;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
@@ -20,7 +20,7 @@ public class PackageItemMixin {
     @Shadow
     public PackageStyles.PackageStyle style;
 
-    @Inject(method = "containing(Lnet/minecraftforge/items/ItemStackHandler;)Lnet/minecraft/world/item/ItemStack;", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "containing(Lnet/neoforged/neoforge/items/ItemStackHandler;)Lnet/minecraft/world/item/ItemStack;", at = @At("HEAD"), cancellable = true)
     private static void containing(ItemStackHandler stacks, CallbackInfoReturnable<ItemStack> cir) {
         var contained = CreateEstrogenPackageStyles.containing(new ItemHandlerWrapper(stacks));
         if (contained != null) {

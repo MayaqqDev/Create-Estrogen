@@ -9,14 +9,14 @@ import dev.mayaqq.createestrogen.content.CreateEstrogenPonderPlugin
 import dev.mayaqq.createestrogen.content.packages.CreateEstrogenPackageStyles
 import net.createmod.ponder.foundation.PonderIndex
 import net.minecraft.resources.ResourceLocation
-import uwu.serenity.kittyconfig.load
 
 fun createEstrogenClient() {
-    CreateEstrogenClientConfig.load()
+    CreateEstrogenClientConfig.initialize()
 
     PonderIndex.addPlugin(CreateEstrogenPonderPlugin)
     for (style in CreateEstrogenPackageStyles.estrogenPillStyles) {
-        AllPartialModels.PACKAGES[style.itemId] = PartialModel.of(ResourceLocation(MOD_ID, "item/${style.itemId.path}"))
+        AllPartialModels.PACKAGES[style.itemId] =
+            PartialModel.of(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item/${style.itemId.path}"))
         AllPartialModels.PACKAGE_RIGGING[style.itemId] = PartialModel.of(style.riggingModel)
     }
 }

@@ -23,7 +23,7 @@ class CentrifugeBlockElement : GenericAnimatedKinetics() {
                 .rotateBlock(22.5, (getCurrentAngle() * 10).toDouble(), 0.0)
                 .scale(scale)
                 .render(graphics)
-            blockElement(CreateEstrogenBlocks.Centrifuge.defaultBlockState())
+            blockElement(CreateEstrogenBlocks.Centrifuge.value!!.defaultBlockState())
                 .rotateBlock(22.5, 22.5, 0.0)
                 .scale(scale)
                 .render(graphics)

@@ -1,13 +1,14 @@
 package dev.mayaqq.createestrogen.content.packages
 
 import com.simibubi.create.content.logistics.box.PackageStyles.PackageStyle
+import com.simibubi.create.AllDataComponents
 import dev.mayaqq.createestrogen.content.CreateEstrogenItems
 import dev.mayaqq.createestrogen.generics.CreateEstrogenItemHandler
 import dev.mayaqq.estrogen.content.EstrogenBlocks
 import dev.mayaqq.estrogen.content.EstrogenItems
-import net.minecraft.nbt.CompoundTag
 import net.minecraft.world.item.Item
 import net.minecraft.world.item.ItemStack
+import net.minecraft.world.item.component.ItemContainerContents
 
 object CreateEstrogenPackageStyles {
 
@@ -19,19 +20,18 @@ object CreateEstrogenPackageStyles {
     )
     private val allowedItemsToBeCounted by lazy {
         setOf(
-            EstrogenItems.EstrogenPill,
-            EstrogenItems.CrystalEstrogenPill,
-            EstrogenBlocks.EstrogenPillBlock.asItem()
+            EstrogenItems.EstrogenPill.value!!,
+            EstrogenItems.CrystalEstrogenPill.value!!,
+            EstrogenBlocks.EstrogenPillBlock.value!!.asItem()
         )
     }
 
     @JvmStatic
     fun containing(stacks: CreateEstrogenItemHandler): ItemStack? {
         if (isMajorityOfItemsEstrogenItems(stacks)) {
-            val box = ItemStack(CreateEstrogenItems.allEstrogenPillBoxes.random().value)
-            val compound = CompoundTag()
-            compound.put("Items", stacks.serializeNBT())
-            box.tag = compound
+            val box = ItemStack(CreateEstrogenItems.allEstrogenPillBoxes.random().value!!)
+            val contents = (0 until stacks.slots).map(stacks::getStackInSlot)
+            box.set(AllDataComponents.PACKAGE_CONTENTS, ItemContainerContents.fromItems(contents))
             return box
         } else return null
     }
@@ -46,13 +46,12 @@ object CreateEstrogenPackageStyles {
             itemToAmount[stack.item] = amount
         }
         val itemToAmountImmutable: Map<Item, Int> = itemToAmount
-        val amountOfEstrogenPillLikeItems = itemToAmountImmutable.getOrDefault(EstrogenItems.EstrogenPill, 0) +
-                itemToAmountImmutable.getOrDefault(EstrogenItems.CrystalEstrogenPill, 0) +
-                (itemToAmountImmutable.getOrDefault(EstrogenBlocks.EstrogenPillBlock.asItem(), 0) * 9)
+        val amountOfEstrogenPillLikeItems = itemToAmountImmutable.getOrDefault(EstrogenItems.EstrogenPill.value!!, 0) +
+                itemToAmountImmutable.getOrDefault(EstrogenItems.CrystalEstrogenPill.value!!, 0) +
+                (itemToAmountImmutable.getOrDefault(EstrogenBlocks.EstrogenPillBlock.value!!.asItem(), 0) * 9)
         val amountOfOtherItems = itemToAmountImmutable.filterKeys { !allowedItemsToBeCounted.contains(it) }.asIterable()
             .fold(0) { acc, (_, value) -> acc + value }
 
         return amountOfEstrogenPillLikeItems > amountOfOtherItems
     }
 }
-

@@ -4,7 +4,6 @@ import com.mojang.blaze3d.vertex.PoseStack
 import com.simibubi.create.content.fluids.tank.FluidTankBlockEntity
 import com.simibubi.create.content.kinetics.base.KineticBlockEntityRenderer
 import dev.mayaqq.createestrogen.content.blockEntities.CentrifugeBlockEntity
-import earth.terrarium.botarium.common.fluid.base.FluidContainer
 import net.createmod.catnip.platform.CatnipServices
 import net.createmod.catnip.render.CachedBuffers
 import net.createmod.catnip.render.SuperByteBuffer
@@ -14,6 +13,7 @@ import net.minecraft.core.BlockPos
 import net.minecraft.world.level.Level
 import net.minecraft.world.level.block.entity.BlockEntity
 import net.minecraft.world.level.block.state.BlockState
+import net.neoforged.neoforge.capabilities.Capabilities
 
 
 class CentrifugeRenderer(ctx: BlockEntityRendererProvider.Context) : KineticBlockEntityRenderer<CentrifugeBlockEntity>(ctx) {
@@ -34,10 +34,11 @@ class CentrifugeRenderer(ctx: BlockEntityRendererProvider.Context) : KineticBloc
         if (level == null || !level.isClientSide) return
         val up: BlockEntity? = getBlockEntity(level, be.blockPos.above())
         val down: BlockEntity? = getBlockEntity(level, be.blockPos.below())
-        renderFluid(up, true, buffer, ms, light)
-        renderFluid(down, false, buffer, ms, light)
+        renderFluid(level, up, true, buffer, ms, light)
+        renderFluid(level, down, false, buffer, ms, light)
     }
     private fun renderFluid(
+        level: Level,
         blockEntity: BlockEntity?,
         isTop: Boolean,
         buffer: MultiBufferSource,
@@ -45,10 +46,16 @@ class CentrifugeRenderer(ctx: BlockEntityRendererProvider.Context) : KineticBloc
         light: Int
     ) {
         if (blockEntity != null) {
-            val container = FluidContainer.of(blockEntity, null)
+            val container = level.getCapability(
+                Capabilities.FluidHandler.BLOCK,
+                blockEntity.blockPos,
+                null
+            )
             if (container != null) {
-                val fluid = container.firstFluid
-                if (fluid != null && !fluid.isEmpty) {
+                val fluid = (0 until container.tanks)
+                    .map(container::getFluidInTank)
+                    .firstOrNull { !it.isEmpty }
+                if (fluid != null) {
                     val yMin = if (isTop) 0.71f else 0.01f
                     val yMax = if (isTop) 0.97f else 0.3f
                     CatnipServices.FLUID_RENDERER.renderFluidBox(

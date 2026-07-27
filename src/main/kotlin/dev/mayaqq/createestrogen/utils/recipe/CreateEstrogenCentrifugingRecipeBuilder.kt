@@ -48,7 +48,8 @@ class CreateEstrogenCentrifugingRecipeBuilder(val _id: ResourceLocation) {
 
         }
 
-        override fun getId(): ResourceLocation = ResourceLocation(recipe.id.namespace, "centrifuging/${recipe.id.path}")
+        override fun getId(): ResourceLocation =
+            ResourceLocation.fromNamespaceAndPath(recipe.id.namespace, "centrifuging/${recipe.id.path}")
 
         override fun getType(): RecipeSerializer<*> =recipe.serializer
 
@@ -57,4 +58,3 @@ class CreateEstrogenCentrifugingRecipeBuilder(val _id: ResourceLocation) {
         override fun getAdvancementId(): ResourceLocation? = null
     }
 }
-

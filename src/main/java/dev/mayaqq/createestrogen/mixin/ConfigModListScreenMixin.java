@@ -3,15 +3,12 @@ package dev.mayaqq.createestrogen.mixin;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.llamalad7.mixinextras.sugar.Local;
 import dev.mayaqq.estrogen.client.content.screen.EstrogenMenuScreen;
-import dev.mayaqq.estrogen.client.content.screen.config.ConfigCategorySelectionScreen;
 import net.createmod.catnip.config.ui.ConfigModListScreen;
 import net.createmod.catnip.config.ui.ConfigScreenList;
 import net.minecraft.client.gui.screens.Screen;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
-
-import java.util.List;
 
 @Mixin(ConfigModListScreen.ModEntry.class)
 public abstract class ConfigModListScreenMixin extends ConfigScreenList.LabeledEntry {
@@ -45,8 +42,7 @@ public abstract class ConfigModListScreenMixin extends ConfigScreenList.LabeledE
     )
     private static Screen changeScreen(Screen original, @Local(argsOnly = true) Screen parent, @Local(argsOnly = true) String id) {
         if (id.equals("createestrogen")) {
-            return new ConfigCategorySelectionScreen(
-                    parent, List.of(id + "/client", id + "/common", id + "/server"));
+            return new EstrogenMenuScreen(parent);
         }
         if (id.equals("estrogen")) {
             return new EstrogenMenuScreen(parent);
