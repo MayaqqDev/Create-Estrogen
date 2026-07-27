@@ -3,9 +3,13 @@ package dev.mayaqq.createestrogen.content
 import dev.mayaqq.createestrogen.MOD_ID
 import invoke.kitty.kritter.registry.api.Registrar
 import invoke.kitty.kritter.registry.creativeTab.creativeTab
+import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.core.registries.Registries
 import net.minecraft.network.chat.Component
 import net.minecraft.world.item.CreativeModeTab
+import net.minecraft.world.item.ItemStack
+import net.minecraft.world.item.Items
+import net.minecraft.world.level.block.Block
 
 object CreateEstrogenCreativeTab: Registrar<CreativeModeTab> by Registrar(MOD_ID, Registries.CREATIVE_MODE_TAB) {
     // Kritter's default custom-tab position is (null, -1). Estrogen uses that
@@ -15,10 +19,22 @@ object CreateEstrogenCreativeTab: Registrar<CreativeModeTab> by Registrar(MOD_ID
         title = Component.translatable("itemGroup.createestrogen.createestrogen")
         icon { CreateEstrogenBlocks.Centrifuge.getOrThrow().asItem().defaultInstance }
         displayItems {
-            accept(CreateEstrogenBlocks.Centrifuge.getOrThrow())
-            accept(CreateEstrogenBlocks.MothSeat.getOrThrow())
-            acceptAll(CreateEstrogenItems.allEstrogenPillBoxes.map { it.getOrThrow().defaultInstance })
-            accept(CreateEstrogenItems.UsedFilter.getOrThrow())
+            acceptBlock(CreateEstrogenBlocks.Centrifuge.getOrThrow())
+            acceptBlock(CreateEstrogenBlocks.MothSeat.getOrThrow())
+            CreateEstrogenItems.allEstrogenPillBoxes
+                .map { it.getOrThrow().defaultInstance }
+                .forEach(::acceptStack)
+            acceptStack(CreateEstrogenItems.UsedFilter.getOrThrow().defaultInstance)
         }
     }
+}
+
+private fun CreativeModeTab.Output.acceptBlock(block: Block) {
+    val blockId = BuiltInRegistries.BLOCK.getKey(block)
+    val item = BuiltInRegistries.ITEM.get(blockId)
+    if (item != Items.AIR) acceptStack(item.defaultInstance)
+}
+
+private fun CreativeModeTab.Output.acceptStack(stack: ItemStack) {
+    if (!stack.isEmpty) accept(stack.copyWithCount(1))
 }

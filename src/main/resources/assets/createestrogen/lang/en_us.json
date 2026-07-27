@@ -1,0 +1,21 @@
+{
+  "block.createestrogen.centrifuge": "Centrifuge",
+  "block.createestrogen.moth_seat": "Rosy Maple Seat",
+  "create.tooltip.speedRequirement.max": "Max",
+  "createestrogen.ponder.basic.header": "How to use the Centrifuge",
+  "createestrogen.ponder.basic.text_1": "The Centrifuge doesn't have any inventory, you will need to place fluid containers around it to make it work!",
+  "createestrogen.ponder.basic.text_2": "You can input fluids from the bottom",
+  "createestrogen.ponder.basic.text_3": "And output fluids from the top",
+  "createestrogen.ponder.intro.header": "The Centrifuge Requirements",
+  "createestrogen.ponder.intro.text_1": "The Centrifuge needs the maximum speed (256 RPM) to work!",
+  "createestrogen.recipe.centrifuging": "Centrifuging",
+  "emi.category.createestrogen.centrifuging": "Centrifuging",
+  "item.createestrogen.estrogen_cardboard_package_10x8": "Estrogen Pill Package",
+  "item.createestrogen.estrogen_cardboard_package_10x12": "Estrogen Pill Package",
+  "item.createestrogen.estrogen_cardboard_package_12x10": "Estrogen Pill Package",
+  "item.createestrogen.estrogen_cardboard_package_12x12": "Estrogen Pill Package",
+  "item.createestrogen.incomplete_estrogen_patches": "Incomplete Estrogen Patch",
+  "item.createestrogen.incomplete_uwu": "Incomplete UwU",
+  "item.createestrogen.used_filter": "Used Filter",
+  "itemGroup.createestrogen.createestrogen": "Create: Estrogen"
+}
