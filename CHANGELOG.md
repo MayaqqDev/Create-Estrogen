@@ -1,5 +1,4 @@
-# Create: Estrogen `@VERSION@` `1.20.1` `Fabric & Forge`
+# Create: Estrogen `@VERSION@` `1.21.1` `Fabric & Forge`
 
 ### Changelog:
-- Fixed Compatibility with Estrogen (sorry) 
-- Marked as stable
+- 1.21.1 port

@@ -1,0 +1,22 @@
+{
+    DataVersion: 3955,
+    size: [2, 4, 1],
+    data: [
+        {pos: [0, 0, 0], state: "minecraft:bedrock"},
+        {pos: [1, 0, 0], state: "minecraft:bedrock"},
+        {pos: [0, 1, 0], state: "minecraft:air"},
+        {pos: [1, 1, 0], state: "create:depot{waterlogged:false}", nbt: {HeldItem: {Angle: 115, InDirection: 3, InSegment: 0, Item: {count: 1, id: "minecraft:elytra"}, Offset: -0.060185187f, Pos: 0.25f, PrevOffset: -0.060185187f, PrevPos: 0.25f}, OutputBuffer: {Items: [], Size: 8}, id: "create:depot"}},
+        {pos: [0, 2, 0], state: "minecraft:air"},
+        {pos: [1, 2, 0], state: "minecraft:air"},
+        {pos: [0, 3, 0], state: "create:creative_motor{facing:east}", nbt: {HasAttachedComputer: 0b, Network: {AddedCapacity: 16384.0f, Capacity: 4194304.0f, Id: 1099511627716L, Size: 2, Stress: 1024.0f}, ScrollValue: 256, Speed: 256.0f, id: "create:motor"}},
+        {pos: [1, 3, 0], state: "create:deployer{axis_along_first:true,facing:down}", nbt: {Filter: {}, FilterAmount: 64, HeldItem: {count: 1, id: "estrogen:moth_fuzz"}, Inventory: [{Slot: 0b, count: 1, id: "estrogen:moth_fuzz"}], Mode: "USE", Network: {AddedStress: 4.0f, Capacity: 4194304.0f, Id: 1099511627716L, Size: 2, Stress: 1024.0f}, Overflow: [], Owner: [I; -483514520, 1046103108, -2037837773, -2111362683], Powered: 0b, Source: [I; 3, -60, -1], Speed: 256.0f, State: "WAITING", Timer: 0, UpTo: 1b, id: "create:deployer"}}
+    ],
+    entities: [],
+    palette: [
+        "minecraft:bedrock",
+        "minecraft:air",
+        "create:depot{waterlogged:false}",
+        "create:creative_motor{facing:east}",
+        "create:deployer{axis_along_first:true,facing:down}"
+    ]
+}

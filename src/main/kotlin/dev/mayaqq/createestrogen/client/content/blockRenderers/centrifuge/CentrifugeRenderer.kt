@@ -4,7 +4,7 @@ import com.mojang.blaze3d.vertex.PoseStack
 import com.simibubi.create.content.fluids.tank.FluidTankBlockEntity
 import com.simibubi.create.content.kinetics.base.KineticBlockEntityRenderer
 import dev.mayaqq.createestrogen.content.blockEntities.CentrifugeBlockEntity
-import earth.terrarium.botarium.common.fluid.base.FluidContainer
+import earth.terrarium.common_storage_lib.fluid.FluidApi
 import net.createmod.catnip.platform.CatnipServices
 import net.createmod.catnip.render.CachedBuffers
 import net.createmod.catnip.render.SuperByteBuffer
@@ -45,14 +45,14 @@ class CentrifugeRenderer(ctx: BlockEntityRendererProvider.Context) : KineticBloc
         light: Int
     ) {
         if (blockEntity != null) {
-            val container = FluidContainer.of(blockEntity, null)
+            val container = FluidApi.BLOCK.find(blockEntity, null)
             if (container != null) {
-                val fluid = container.firstFluid
-                if (fluid != null && !fluid.isEmpty) {
+                val fluid = if (container.size() > 0)  container[0] else null
+                if (fluid != null && fluid.amount > 0 ) {
                     val yMin = if (isTop) 0.71f else 0.01f
                     val yMax = if (isTop) 0.97f else 0.3f
                     CatnipServices.FLUID_RENDERER.renderFluidBox(
-                        fluid.fluid.defaultFluidState(),
+                        fluid.resource.type.defaultFluidState(),
                         0.01f,
                         yMin,
                         0.01f,

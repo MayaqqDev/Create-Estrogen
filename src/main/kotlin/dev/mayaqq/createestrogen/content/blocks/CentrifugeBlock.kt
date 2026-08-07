@@ -46,7 +46,7 @@ class CentrifugeBlock(properties: Properties) : KineticBlock(properties), IBE<Ce
 
     override fun isSmallCog(): Boolean = true
     @Deprecated("Deprecated in Java")
-    override fun isPathfindable(p0: BlockState, p1: BlockGetter, p2: BlockPos, p3: PathComputationType): Boolean = false
+    override fun isPathfindable(p0: BlockState, p3: PathComputationType): Boolean = false
 
     @Deprecated("Deprecated in Java")
     override fun getShape(p0: BlockState, p1: BlockGetter, p2: BlockPos, p3: CollisionContext): VoxelShape = Shapes.block()

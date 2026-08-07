@@ -1,60 +1,62 @@
 package dev.mayaqq.createestrogen.utils.recipe
 
-import com.google.gson.JsonObject
-import com.mojang.serialization.JsonOps
-import dev.mayaqq.createestrogen.CreateEstrogen
+
 import dev.mayaqq.createestrogen.content.recipes.CentrifugingRecipe
 import dev.mayaqq.createestrogen.content.recipes.RatioFluidIngredient
 import dev.mayaqq.createestrogen.content.recipes.RatioFluidOutput
-import net.minecraft.data.recipes.FinishedRecipe
+import net.minecraft.advancements.Criterion
+import net.minecraft.data.recipes.RecipeBuilder
+import net.minecraft.data.recipes.RecipeOutput
 import net.minecraft.resources.ResourceLocation
-import net.minecraft.world.item.crafting.RecipeSerializer
+import net.minecraft.world.item.Item
 import net.minecraft.world.level.material.Fluid
-import java.util.function.Consumer
+import net.neoforged.neoforge.common.conditions.ICondition
 
-class CreateEstrogenCentrifugingRecipeBuilder(val _id: ResourceLocation) {
+
+class CreateEstrogenCentrifugingRecipeBuilder(val _id: ResourceLocation) : RecipeBuilder {
     private val recipeInputs = mutableListOf<RatioFluidIngredient>()
     private var recipeOutput: RatioFluidOutput? = null
-
-    fun addInput(fluid: Fluid,amountPerTick: Long) : CreateEstrogenCentrifugingRecipeBuilder {
-        recipeInputs.add(RatioFluidIngredient(fluid,amountPerTick))
+    private val conditions = ArrayList<ICondition>()
+    fun addInput(fluid: Fluid, amountPerTick: Long): CreateEstrogenCentrifugingRecipeBuilder {
+        recipeInputs.add(RatioFluidIngredient(fluid, amountPerTick))
         return this
     }
-    fun addOutput(fluid: Fluid,amountPerTick: Long): CreateEstrogenCentrifugingRecipeBuilder {
-        recipeOutput = RatioFluidOutput(fluid,amountPerTick)
+
+    fun addOutput(fluid: Fluid, amountPerTick: Long): CreateEstrogenCentrifugingRecipeBuilder {
+        recipeOutput = RatioFluidOutput(fluid, amountPerTick)
         return this
     }
-     fun build(): CentrifugingRecipe {
-        return CentrifugingRecipe(_id,recipeInputs,recipeOutput!!)
+
+    fun build(): CentrifugingRecipe = CentrifugingRecipe(recipeInputs, recipeOutput!!)
+
+
+    override fun unlockedBy(
+        name: String,
+        criterion: Criterion<*>
+    ): RecipeBuilder {
+        return this
     }
 
-    fun build(consumer: Consumer<FinishedRecipe?>) {
-        consumer.accept(
-            DataGenResult(
-                this.build()
-            )
-        )
+    override fun group(groupName: String?): RecipeBuilder {
+        return this
     }
-    class DataGenResult(val recipe: CentrifugingRecipe) : FinishedRecipe {
-        override fun serializeRecipeData(json: JsonObject)  {
-            val r = CentrifugingRecipe.codec(recipe.id).encodeStart(JsonOps.INSTANCE, recipe).getOrThrow(true) {
-                CreateEstrogen.error(
-                    "Error encoding codec recipe: $it"
-                )
-            }
-            r.asJsonObject.entrySet().forEach {
-                json.add(it.key,it.value)
-            }
 
-        }
+    override fun getResult(): Item =
+        recipeOutput!!.fluid.bucket
 
-        override fun getId(): ResourceLocation = ResourceLocation(recipe.id.namespace, "centrifuging/${recipe.id.path}")
 
-        override fun getType(): RecipeSerializer<*> =recipe.serializer
-
-        override fun serializeAdvancement(): JsonObject? = null
-
-        override fun getAdvancementId(): ResourceLocation? = null
+    override fun save(
+        recipeOutput: RecipeOutput,
+        id: ResourceLocation
+    ) {
+        val recipe = build()
+        recipeOutput.accept(id, recipe, null, *conditions.toTypedArray())
     }
+
+    override fun save(recipeOutput: RecipeOutput) =
+        save(recipeOutput, _id)
+
 }
+
+
 

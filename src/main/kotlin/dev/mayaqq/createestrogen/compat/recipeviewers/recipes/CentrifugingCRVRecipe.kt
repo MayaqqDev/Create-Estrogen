@@ -7,8 +7,9 @@ import dev.mayaqq.estrogen.compat.recipeviewers.api.CRVIngredient
 import dev.mayaqq.estrogen.compat.recipeviewers.api.CRVRecipe
 import dev.mayaqq.estrogen.compat.recipeviewers.api.Role
 import dev.mayaqq.estrogen.compat.recipeviewers.api.ViewerInfo
+import net.minecraft.world.item.crafting.RecipeHolder
 
-class CentrifugingCRVRecipe(recipe: CentrifugingRecipe) : CRVRecipe<CentrifugingRecipe>(recipe) {
+class CentrifugingCRVRecipe(recipe: RecipeHolder<CentrifugingRecipe>) : CRVRecipe<CentrifugingRecipe>(recipe) {
     override fun init() {
         addTexture(RecipeTextures.JEI_LONG_ARROW, 31, 51)
         addTexture(RecipeTextures.JEI_SHADOW, 40, 36)
@@ -17,15 +18,19 @@ class CentrifugingCRVRecipe(recipe: CentrifugingRecipe) : CRVRecipe<Centrifuging
         addDrawable(55, 40, CentrifugeBlockElement())
     }
 
-    override val inputs: List<CRVIngredient> = listOf(CRVIngredient.of(recipe.inputs.first().fluid))
+    override val inputs: List<CRVIngredient> = recipe.value.inputs.map { CRVIngredient(fluid = it.fluid) }
 
-    override val outputs: List<CRVIngredient> = listOf(CRVIngredient.of(recipe.result.fluid))
+    override val outputs: List<CRVIngredient> = listOf(CRVIngredient.of(recipe.value.result.fluid))
 
     override val catalysts: List<CRVIngredient> = listOf(CRVIngredient.of(CreateEstrogenBlocks.Centrifuge.asItem().defaultInstance))
 
     companion object : ViewerInfo<CentrifugingRecipe, CentrifugingCRVRecipe>(
         CentrifugingRecipe,
-        { CentrifugingCRVRecipe(it as CentrifugingRecipe) },
+        {
+            @Suppress("UNCHECKED_CAST")
+            CentrifugingCRVRecipe(
+                if (it.value is CentrifugingRecipe) it as RecipeHolder<CentrifugingRecipe> else throw Exception("Expected CentrifugingRecipe got ${it.value.javaClass}"))
+        },
         CentrifugingRecipe::class
     )
 }

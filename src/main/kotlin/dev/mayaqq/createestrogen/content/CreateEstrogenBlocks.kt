@@ -10,35 +10,40 @@ import com.simibubi.create.content.contraptions.actors.seat.SeatInteractionBehav
 import com.simibubi.create.content.contraptions.actors.seat.SeatMovementBehaviour
 import com.simibubi.create.foundation.data.SharedProperties
 import dev.mayaqq.createestrogen.CreateEstrogen
+import dev.mayaqq.createestrogen.MOD_ID
 import dev.mayaqq.createestrogen.registry.blocks.CentrifugeBlock
-import net.minecraft.client.renderer.RenderType
+import dev.mayaqq.cynosure.utils.standardTooltip
+import invoke.kitty.kritter.registry.api.Registrar
+import invoke.kitty.kritter.registry.block.BlockRenderType
+import invoke.kitty.kritter.registry.block.block
+import invoke.kitty.kritter.registry.block.renderType
+import invoke.kitty.kritter.registry.item.item
 import net.minecraft.core.registries.Registries
+import net.minecraft.world.item.BlockItem
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.Blocks
-import net.minecraft.world.level.block.state.BlockBehaviour
 import net.minecraft.world.level.material.MapColor
-import uwu.serenity.kritter.api.Registrar
-import uwu.serenity.kritter.client.stdlib.renderType
-import uwu.serenity.kritter.stdlib.block
 
-object CreateEstrogenBlocks: Registrar<Block> by CreateEstrogen..Registries.BLOCK {
+object CreateEstrogenBlocks: Registrar<Block> by Registrar(MOD_ID, Registries.BLOCK) {
     val Centrifuge by block("centrifuge", ::CentrifugeBlock)
     {
-        copyProperties(SharedProperties::copperMetal)
+        initialPropertiesFrom(SharedProperties::copperMetal)
         properties{
             requiresCorrectToolForDrops()
             mapColor(MapColor.COLOR_ORANGE).noOcclusion()
         }
-        renderType = RenderType::cutoutMipped
+        renderType = BlockRenderType.CUTOUT_MIPPED
         onRegister {
             BlockStressValues.IMPACTS.register(it) {
                 8.0
             }
         }
-        simpleItem()
+        item(factory = ::BlockItem) {
+            standardTooltip()
+        }
     }
     val MothSeat by block("moth_seat", { SeatBlock(it, null) }) {
-        copyProperties(Blocks::STRIPPED_SPRUCE_WOOD)
+        initialPropertiesFrom(Blocks::STRIPPED_SPRUCE_WOOD)
         properties {
             mapColor(MapColor.COLOR_ORANGE)
         }
@@ -49,8 +54,9 @@ object CreateEstrogenBlocks: Registrar<Block> by CreateEstrogen..Registries.BLOC
         onSetup {
             DisplaySource.BY_BLOCK.register(it, listOf(AllDisplaySources.ENTITY_NAME.get()))
         }
-        simpleItem()
-
+        item(factory = ::BlockItem) {
+            standardTooltip()
+        }
 
 
     }
