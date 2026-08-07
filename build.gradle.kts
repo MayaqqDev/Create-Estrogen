@@ -164,12 +164,11 @@ kotlin {
     jvmToolchain(21)
 }
 
-/*
 publishMods {
     changelog = file("CHANGELOG.md").readText().replace("@VERSION@", modVersion)
     type = STABLE
     val loader = "neoforge"
-    val jar = cloche.targets["A"].finalJar.flatMap(Jar::getArchiveFile)
+    val jar = tasks.named<Jar>("includeJar").flatMap(Jar::getArchiveFile)
 
     curseforge("curseforge") {
         accessToken = providers.environmentVariable("CURSEFORGE_TOKEN")
@@ -195,4 +194,4 @@ publishMods {
         version = "$modVersion-$loader"
         requires("estrogen", "create")
     }
-}*/
+}
