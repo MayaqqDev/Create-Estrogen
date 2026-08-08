@@ -1,5 +1,6 @@
 package dev.mayaqq.createestrogen
 
+import dev.mayaqq.createestrogen.client.initClientEvents
 import dev.mayaqq.createestrogen.config.CreateEstrogenCommonConfig
 import dev.mayaqq.createestrogen.config.CreateEstrogenServerConfig
 import dev.mayaqq.createestrogen.content.*
@@ -8,7 +9,9 @@ import dev.mayaqq.estrogen.api.EstrogenEntrypoint
 import dev.mayaqq.estrogen.api.EstrogenFlag
 import dev.mayaqq.estrogen.api.EstrogenModule
 import dev.mayaqq.estrogen.api.ScreenProvider
+import invoke.kitty.kritter.platform.Mod
 import invoke.kitty.kritter.platform.forge.EntrypointHandler
+import invoke.kitty.kritter.platform.forge.eventBus
 import invoke.kitty.kritter.utils.clientOnly
 import invoke.kitty.kritter.utils.color.Color
 import invoke.kitty.kritter.utils.color.rgb
@@ -20,7 +23,7 @@ const val MOD_NAME = "Create: Estrogen"
 fun id(path: String) = identifier(MOD_ID, path)
 
 @EntrypointHandler("init")
-fun init() {
+fun init(mod: Mod) {
     CreateEstrogenCommonConfig.initialize()
     CreateEstrogenServerConfig.initialize()
     CreateEstrogenSerializers.register()
@@ -29,7 +32,9 @@ fun init() {
     CreateEstrogenBlockEntities.register()
     CreateEstrogenItems.register()
     CreateEstrogenCreativeTab.register()
-    clientOnly {  }
+    clientOnly {
+        initClientEvents(mod)
+    }
 }
 
 @EstrogenEntrypoint
