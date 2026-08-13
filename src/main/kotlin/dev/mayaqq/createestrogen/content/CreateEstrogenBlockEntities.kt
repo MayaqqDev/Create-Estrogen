@@ -1,11 +1,11 @@
 package dev.mayaqq.createestrogen.content
 
-import dev.mayaqq.createestrogen.CreateEstrogen
 import dev.mayaqq.createestrogen.MOD_ID
 import dev.mayaqq.createestrogen.client.content.blockRenderers.centrifuge.CentrifugeRenderer
 import dev.mayaqq.createestrogen.client.content.blockRenderers.centrifuge.CreateEstrogenRenderer
 import dev.mayaqq.createestrogen.client.platforms.ofVisual
 import dev.mayaqq.createestrogen.content.blockEntities.CentrifugeBlockEntity
+import dev.mayaqq.estrogen.content.visual
 import invoke.kitty.kritter.registry.api.Registrar
 import invoke.kitty.kritter.registry.blockEntity.blockEntity
 import invoke.kitty.kritter.registry.blockEntity.renderer
@@ -19,7 +19,7 @@ object CreateEstrogenBlockEntities : Registrar<BlockEntityType<*>> by Registrar(
         validBlock(CreateEstrogenBlocks::Centrifuge)
         renderer(::CentrifugeRenderer)
         clientOnly {
-            visual(CreateEstrogenRenderer.CENTRIFUGE_COG::ofVisual, { false })
+            visual(CreateEstrogenRenderer.CENTRIFUGE_COG::ofVisual) { false }
         }
     }
 }
