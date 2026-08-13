@@ -3,7 +3,11 @@ package dev.mayaqq.createestrogen.mixin;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.llamalad7.mixinextras.sugar.Local;
 import com.teamresourceful.resourcefullib.common.exceptions.NotImplementedException;
+import dev.mayaqq.createestrogen.config.CreateEstrogenClientConfig;
+import dev.mayaqq.createestrogen.config.CreateEstrogenCommonConfig;
+import dev.mayaqq.createestrogen.config.CreateEstrogenServerConfig;
 import dev.mayaqq.estrogen.client.content.screen.EstrogenMenuScreen;
+import dev.mayaqq.estrogen.client.content.screen.config.ConfigCategorySelectionScreen;
 import net.createmod.catnip.config.ui.ConfigModListScreen;
 import net.createmod.catnip.config.ui.ConfigScreenList;
 import net.minecraft.client.gui.screens.Screen;
@@ -45,8 +49,14 @@ public abstract class ConfigModListScreenMixin extends ConfigScreenList.LabeledE
     )
     private static Screen changeScreen(Screen original, @Local(argsOnly = true) Screen parent, @Local(argsOnly = true) String id) {
         if (id.equals("createestrogen")) {
-            //TODO: Config screen
-            throw new NotImplementedException();
+            return new ConfigCategorySelectionScreen(
+                    parent,
+                    List.of(
+                            CreateEstrogenClientConfig.INSTANCE,
+                            CreateEstrogenCommonConfig.INSTANCE,
+                            CreateEstrogenServerConfig.INSTANCE
+                    )
+            );
         }
         if (id.equals("estrogen")) {
             return new EstrogenMenuScreen(parent);

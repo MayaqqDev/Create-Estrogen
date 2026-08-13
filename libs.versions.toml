@@ -8,7 +8,7 @@ cloche = "0.19.12"
 minecraft = "1.21.1"
 
 # Common Dependencies
-kritter = "2.0.0-alpha.50"
+kritter = "2.0.0-alpha.52"
 kotlinx-serialization = "1.8.0"
 kotlinx-coroutines = "1.10.1"
 parchment = "2024.11.17"
@@ -19,10 +19,11 @@ jei = "19.27.0.343-neoforge"
 mixin_extras = "0.5.3"
 mixin = "0.8.5"
 flywheel = "1.0.6"
-cynosure = "1.0.0.35"
+cynosure = "1.0.0.37"
 ponder = "1.0.69"
 kubejs = "2101.7.2-build.368"
-estrogen = "6.0.0+1.21.1-alpha.2"
+estrogen = "6.0.0+1.21.1-alpha.4"
+lattice = "1.4.0"
 csr = "0.0.9"
 rlib = "3.0.12"
 # Forge Only Dependencies
@@ -42,6 +43,7 @@ mixinExtras = { module = "io.github.llamalad7:mixinextras-common", version.ref =
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinx-coroutines" }
 cynosure = { module = "dev.mayaqq.cynosure:cynosure", version.ref = "cynosure" }
+lattice = { module = "com.moulberry:lattice", version.ref = "lattice" }
 forge-registrate = {group = "com.tterrag.registrate", name = "Registrate", version.ref="registrate_forge"}
 forge-ponder  = {group = "net.createmod.ponder", name = "Ponder-NeoForge-1.21.1", version.ref = "ponder"}
 forge-kotlin = { module = "thedarkcolour:kotlinforforge", version.ref = "kff" }

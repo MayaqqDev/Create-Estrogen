@@ -1,7 +1,11 @@
 package dev.mayaqq.createestrogen.client.content.screen
 
+import dev.mayaqq.createestrogen.config.CreateEstrogenClientConfig
+import dev.mayaqq.createestrogen.config.CreateEstrogenCommonConfig
+import dev.mayaqq.createestrogen.config.CreateEstrogenServerConfig
 import dev.mayaqq.cynosure.helpers.McClient
 import dev.mayaqq.cynosure.text.CommonText
+import dev.mayaqq.estrogen.client.content.screen.config.ConfigCategorySelectionScreen
 import dev.mayaqq.estrogen.content.EstrogenItems
 import invoke.kitty.kritter.utils.extensions.asStack
 import net.minecraft.client.Minecraft
@@ -21,7 +25,9 @@ class OpenEstrogenMenuButton(x: Int, y: Int) : Button(
         val ICON: ItemStack = EstrogenItems.EstrogenPill.asStack()
 
         fun click(button: Button) {
-            //TODO: open config selection screen once in estrogen
+            McClient.setScreen(
+                ConfigCategorySelectionScreen(McClient.screen, listOf(CreateEstrogenClientConfig, CreateEstrogenCommonConfig, CreateEstrogenServerConfig))
+            )
         }
     }
 }

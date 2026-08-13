@@ -111,6 +111,7 @@ cloche {
                 modApi(libs.estrogen) {
                     this.artifact { classifier = "neoforge" }
                 }
+                modApi(libs.lattice)
                 modApi(libs.forge.kubejs)
                 modCompileOnly(libs.forge.registrate)
 

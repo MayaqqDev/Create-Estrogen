@@ -35,9 +35,9 @@ object CreateEstrogenClientConfig : Config("$MOD_ID/client", Json5Format.Default
 }
 
 object CreateEstrogenCommonConfig : SyncedConfig("$MOD_ID/common", Json5Format.Default) {
-
+    val hiHowAreYou: String by field("placeholder")
 }
 
 object CreateEstrogenServerConfig : Config("$MOD_ID/server", Json5Format.Default) {
-
+    val hiHowAreYou: String by field("placeholder")
 }
