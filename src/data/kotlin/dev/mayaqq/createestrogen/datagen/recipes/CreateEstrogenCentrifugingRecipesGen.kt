@@ -10,8 +10,8 @@ import java.util.concurrent.CompletableFuture
 class CreateEstrogenCentrifugingRecipesGen(output: PackOutput, lookup: CompletableFuture<HolderLookup.Provider>) : CentrifugingRecipesGen(output, lookup, MOD_ID) {
     init {
         create("liquid_estrogen") {
-            addInput(EstrogenFluids.FiltratedHorseUrine.get(), 81)
-            addOutput(EstrogenFluids.LiquidEstrogen.get(), 81)
+            addInput(EstrogenFluids.FiltratedHorseUrine.get(), 1)
+            addOutput(EstrogenFluids.LiquidEstrogen.get(), 1)
         }
     }
 }

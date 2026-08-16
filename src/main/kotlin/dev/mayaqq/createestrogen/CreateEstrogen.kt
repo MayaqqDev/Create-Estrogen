@@ -1,16 +1,20 @@
 package dev.mayaqq.createestrogen
 
+import com.simibubi.create.api.behaviour.spouting.BlockSpoutingBehaviour
 import dev.mayaqq.createestrogen.client.initClientEvents
 import dev.mayaqq.createestrogen.config.CreateEstrogenClientConfig
 import dev.mayaqq.createestrogen.config.CreateEstrogenCommonConfig
 import dev.mayaqq.createestrogen.config.CreateEstrogenServerConfig
 import dev.mayaqq.createestrogen.content.*
+import dev.mayaqq.createestrogen.interactions.CreateFluidHandlingInteractions
 import dev.mayaqq.cynosure.core.identifier
 import dev.mayaqq.estrogen.api.EstrogenEntrypoint
 import dev.mayaqq.estrogen.api.EstrogenFlag
 import dev.mayaqq.estrogen.api.EstrogenModule
 import dev.mayaqq.estrogen.api.ScreenProvider
 import dev.mayaqq.estrogen.client.content.screen.config.ConfigCategorySelectionScreen
+import dev.mayaqq.estrogen.content.EstrogenBlocks
+import invoke.kitty.kritter.events.LateInitEvent
 import invoke.kitty.kritter.platform.Mod
 import invoke.kitty.kritter.platform.forge.EntrypointHandler
 import invoke.kitty.kritter.utils.clientOnly
@@ -35,6 +39,10 @@ fun init(mod: Mod) {
     CreateEstrogenCreativeTab.register()
     clientOnly {
         initClientEvents(mod)
+    }
+
+    LateInitEvent.subscribe {
+        CreateFluidHandlingInteractions.init()
     }
 }
 
