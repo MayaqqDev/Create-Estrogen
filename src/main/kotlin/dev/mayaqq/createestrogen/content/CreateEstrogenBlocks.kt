@@ -9,10 +9,15 @@ import com.simibubi.create.content.contraptions.actors.seat.SeatBlock
 import com.simibubi.create.content.contraptions.actors.seat.SeatInteractionBehaviour
 import com.simibubi.create.content.contraptions.actors.seat.SeatMovementBehaviour
 import com.simibubi.create.foundation.data.SharedProperties
-import dev.mayaqq.createestrogen.CreateEstrogen
+import com.simibubi.create.foundation.item.ItemDescription
+import com.simibubi.create.foundation.item.KineticStats
+import com.simibubi.create.foundation.item.TooltipModifier
 import dev.mayaqq.createestrogen.MOD_ID
+import dev.mayaqq.createestrogen.interactions.CreateTooltip
 import dev.mayaqq.createestrogen.registry.blocks.CentrifugeBlock
-import dev.mayaqq.cynosure.utils.standardTooltip
+import dev.mayaqq.cynosure.items.extensions.registerExtension
+import dev.mayaqq.cynosure.tooltips.CompositeTooltip
+import dev.mayaqq.cynosure.tooltips.DescriptionTooltip
 import invoke.kitty.kritter.registry.api.Registrar
 import invoke.kitty.kritter.registry.block.BlockRenderType
 import invoke.kitty.kritter.registry.block.block
@@ -39,7 +44,12 @@ object CreateEstrogenBlocks: Registrar<Block> by Registrar(MOD_ID, Registries.BL
             }
         }
         item(factory = ::BlockItem) {
-            standardTooltip()
+            onRegister {
+                it.registerExtension(CompositeTooltip(
+                    DescriptionTooltip(DescriptionTooltip.Theme.Default),
+                    CreateTooltip(TooltipModifier.mapNull(KineticStats.create(it)))
+                ))
+            }
         }
     }
     val MothSeat by block("moth_seat", { SeatBlock(it, null) }) {
@@ -55,9 +65,10 @@ object CreateEstrogenBlocks: Registrar<Block> by Registrar(MOD_ID, Registries.BL
             DisplaySource.BY_BLOCK.register(it, listOf(AllDisplaySources.ENTITY_NAME.get()))
         }
         item(factory = ::BlockItem) {
-            standardTooltip()
+            onRegister {
+                ItemDescription.useKey(it, "block.create.seat")
+            }
+            createTooltip { ItemDescription.Modifier(it, DescriptionTooltip.Theme.Default.create) }
         }
-
-
     }
 }

@@ -14,6 +14,7 @@ class CreateEstrogenTranslations(output: PackOutput) : LanguageProvider(output, 
         add(CreateEstrogenItems.UsedFilter, "Used Filter")
 
         add(CreateEstrogenBlocks.Centrifuge, "Centrifuge")
+        add("block.createestrogen.centrifuge.tooltip", "This machine only accepts _input_ from the _bottom_ and _output_ from the _top_.")
         add(CreateEstrogenBlocks.MothSeat, "Rosy Maple Seat")
         add("itemGroup.createestrogen.createestrogen", "Create: Estrogen")
         add("createestrogen.recipe.centrifuging", "Centrifuging")
