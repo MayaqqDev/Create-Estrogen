@@ -3,6 +3,7 @@ package dev.mayaqq.createestrogen.client
 import com.simibubi.create.AllPartialModels
 import com.simibubi.create.infrastructure.gui.CreateMainMenuScreen
 import dev.engine_room.flywheel.lib.model.baked.PartialModel
+import dev.mayaqq.createestrogen.CreateEstrogen
 import dev.mayaqq.createestrogen.MOD_ID
 import dev.mayaqq.createestrogen.client.content.screen.OpenEstrogenMenuButton
 import dev.mayaqq.createestrogen.config.CreateEstrogenClientConfig
@@ -47,7 +48,7 @@ fun createEstrogenClient(mod: Mod) {
 }
 
 fun initClientEvents(mod: Mod) {
-    NeoForge.EVENT_BUS.addListener<ScreenEvent.Init.Pre> { event ->
+    NeoForge.EVENT_BUS.addListener<ScreenEvent.Init.Post> { event ->
         val gui = event.screen
         if (gui is CreateMainMenuScreen && CreateEstrogenClientConfig.EstrogenButton.enabled) {
             event.listenersList
