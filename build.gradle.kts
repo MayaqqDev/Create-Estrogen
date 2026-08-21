@@ -56,10 +56,8 @@ cloche {
         author("Mayaqq")
         contributor("https://modded.wiki/w/Estrogen:Credits")
         dependency { modId = "create"; version { start = "6.0.6" } }
-        dependency { modId = "cynosure"; version { start = "0.1.16" } }
-        dependency { modId = "estrogen"; version { start = "5.0.8" } }
-        dependency { modId = "create"; version { start = "6.0.6" }
-        }
+        dependency { modId = "cynosure"; version { start = "1.0.0" } }
+        dependency { modId = "estrogen"; version { start = "6.0.0" } }
     }
 
     mappings {
