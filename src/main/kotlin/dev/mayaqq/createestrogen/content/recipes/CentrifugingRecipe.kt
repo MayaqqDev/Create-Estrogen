@@ -139,5 +139,7 @@ class CentrifugingRecipe(
             get() = 80
         override val type: RecipeType<*>
             get() = CreateEstrogenRecipes.CENTRIFUGING
+        override val workstation: ItemStack?
+            get() = CreateEstrogenBlocks.Centrifuge.asItem().defaultInstance
     }
 }
