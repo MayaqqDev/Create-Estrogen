@@ -3,6 +3,7 @@ package dev.mayaqq.createestrogen.client.content.blockRenderers.centrifuge
 import com.mojang.blaze3d.vertex.PoseStack
 import com.simibubi.create.content.fluids.tank.FluidTankBlockEntity
 import com.simibubi.create.content.kinetics.base.KineticBlockEntityRenderer
+import dev.mayaqq.createestrogen.client.content.blockRenderers.CreateEstrogenRenderer
 import dev.mayaqq.createestrogen.content.blockEntities.CentrifugeBlockEntity
 import earth.terrarium.common_storage_lib.fluid.FluidApi
 import net.createmod.catnip.platform.CatnipServices

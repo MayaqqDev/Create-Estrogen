@@ -1,6 +1,6 @@
 package dev.mayaqq.createestrogen.compat.recipeviewers.recipes
 
-import dev.mayaqq.createestrogen.client.content.blockRenderers.centrifuge.CreateEstrogenRenderer
+import dev.mayaqq.createestrogen.client.content.blockRenderers.CreateEstrogenRenderer
 import dev.mayaqq.createestrogen.compat.recipeviewers.api.GenericAnimatedKinetics
 import dev.mayaqq.createestrogen.content.CreateEstrogenBlocks
 import dev.mayaqq.cynosure.client.utils.pushPop

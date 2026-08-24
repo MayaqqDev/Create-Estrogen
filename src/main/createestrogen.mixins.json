@@ -7,7 +7,11 @@
     "SpeedLevelMixin",
     "ConfigModListScreenMixin",
     "PackageItemMixin",
-    "PackageStyleMixin"
+    "PackageStyleMixin",
+    "BaseArmorItemMixin"
+  ],
+  "client": [
+    "client.CardboardArmorHandlerClientMixin"
   ],
   "injectors": {
     "defaultRequire": 1

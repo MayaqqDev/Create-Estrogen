@@ -2,7 +2,7 @@ package dev.mayaqq.createestrogen.content
 
 import dev.mayaqq.createestrogen.MOD_ID
 import dev.mayaqq.createestrogen.client.content.blockRenderers.centrifuge.CentrifugeRenderer
-import dev.mayaqq.createestrogen.client.content.blockRenderers.centrifuge.CreateEstrogenRenderer
+import dev.mayaqq.createestrogen.client.content.blockRenderers.CreateEstrogenRenderer
 import dev.mayaqq.createestrogen.client.platforms.ofVisual
 import dev.mayaqq.createestrogen.content.blockEntities.CentrifugeBlockEntity
 import dev.mayaqq.estrogen.content.visual
