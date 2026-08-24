@@ -38,7 +38,7 @@ fun init(mod: Mod) {
     CreateEstrogenItems.register()
     CreateEstrogenCreativeTab.register()
     clientOnly {
-        initClientEvents(mod)
+        initClientEvents()
     }
 
     LateInitEvent.subscribe {
