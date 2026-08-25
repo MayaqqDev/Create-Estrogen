@@ -1,9 +1,12 @@
 package dev.mayaqq.createestrogen.content
 
+import com.simibubi.create.content.equipment.goggles.GogglesItem
 import com.simibubi.create.content.logistics.box.PackageItem
 import com.simibubi.create.content.processing.sequenced.SequencedAssemblyItem
 import dev.mayaqq.createestrogen.MOD_ID
+import dev.mayaqq.createestrogen.content.item.CatEarGogglesItem
 import dev.mayaqq.createestrogen.content.packages.CreateEstrogenPackageStyles
+import dev.mayaqq.createestrogen.id
 import invoke.kitty.kritter.registry.api.Registrar
 import invoke.kitty.kritter.registry.api.entry.RegistryEntry
 import invoke.kitty.kritter.registry.item.item
@@ -33,4 +36,10 @@ object CreateEstrogenItems: Registrar<Item> by Registrar(MOD_ID, Registries.ITEM
             }
         }
 
+    val CatEarGoggles by item("cat_ear_goggles", ::CatEarGogglesItem) {
+        properties {
+            stacksTo(1)
+            component(CreateEstrogenComponents.CatEarGoggleTypeComponent, id("black"))
+        }
+    }
 }

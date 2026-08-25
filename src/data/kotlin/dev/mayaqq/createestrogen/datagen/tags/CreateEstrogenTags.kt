@@ -46,5 +46,7 @@ class CreateEstrogenItemTags(
 
         tag(AllTags.AllItemTags.PACKAGES.tag)
             .add(*CreateEstrogenItems.allEstrogenPillBoxes.map(RegistryEntry<PackageItem>::value).toTypedArray())
+        tag(AllTags.AllItemTags.CURIOS_HEAD.tag)
+            .add(CreateEstrogenItems.CatEarGoggles)
     }
 }

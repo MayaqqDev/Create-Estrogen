@@ -1,25 +1,27 @@
 package dev.mayaqq.createestrogen
 
-import com.simibubi.create.api.behaviour.spouting.BlockSpoutingBehaviour
 import dev.mayaqq.createestrogen.client.initClientEvents
 import dev.mayaqq.createestrogen.config.CreateEstrogenClientConfig
 import dev.mayaqq.createestrogen.config.CreateEstrogenCommonConfig
 import dev.mayaqq.createestrogen.config.CreateEstrogenServerConfig
 import dev.mayaqq.createestrogen.content.*
+import dev.mayaqq.createestrogen.features.goggles.CatEarGoggleLoader
 import dev.mayaqq.createestrogen.interactions.CreateFluidHandlingInteractions
+import dev.mayaqq.createestrogen.network.CreateEstrogenNetwork
 import dev.mayaqq.cynosure.core.identifier
 import dev.mayaqq.estrogen.api.EstrogenEntrypoint
 import dev.mayaqq.estrogen.api.EstrogenFlag
 import dev.mayaqq.estrogen.api.EstrogenModule
 import dev.mayaqq.estrogen.api.ScreenProvider
 import dev.mayaqq.estrogen.client.content.screen.config.ConfigCategorySelectionScreen
-import dev.mayaqq.estrogen.content.EstrogenBlocks
 import invoke.kitty.kritter.events.LateInitEvent
 import invoke.kitty.kritter.platform.Mod
 import invoke.kitty.kritter.platform.forge.EntrypointHandler
+import invoke.kitty.kritter.resources.registerReloadListener
 import invoke.kitty.kritter.utils.clientOnly
 import invoke.kitty.kritter.utils.color.Color
 import invoke.kitty.kritter.utils.color.rgb
+import net.minecraft.server.packs.PackType
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
@@ -29,21 +31,31 @@ fun id(path: String) = identifier(MOD_ID, path)
 
 @EntrypointHandler("init")
 fun init(mod: Mod) {
+    // Config
     CreateEstrogenCommonConfig.initialize()
     CreateEstrogenServerConfig.initialize()
+    // Packets
+    CreateEstrogenNetwork.initialize()
+    //Registry
+    CreateEstrogenComponents.register()
     CreateEstrogenSerializers.register()
     CreateEstrogenRecipes.register()
     CreateEstrogenBlocks.register()
     CreateEstrogenBlockEntities.register()
     CreateEstrogenItems.register()
     CreateEstrogenCreativeTab.register()
+    // Client events
     clientOnly {
         initClientEvents()
     }
 
+    // Create Fluid Interactions
     LateInitEvent.subscribe {
         CreateFluidHandlingInteractions.init()
     }
+
+    // Reload Listeners
+    registerReloadListener(PackType.SERVER_DATA, id("cat_ear_goggle_types"), CatEarGoggleLoader)
 }
 
 @EstrogenEntrypoint

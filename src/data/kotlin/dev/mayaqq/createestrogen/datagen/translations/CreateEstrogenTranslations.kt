@@ -12,6 +12,7 @@ class CreateEstrogenTranslations(output: PackOutput) : LanguageProvider(output, 
         add(CreateEstrogenItems.IncompleteEstrogenPatch, "Incomplete Estrogen Patch")
         add(CreateEstrogenItems.IncompleteUwU, "Incomplete UwU")
         add(CreateEstrogenItems.UsedFilter, "Used Filter")
+        add(CreateEstrogenItems.CatEarGoggles, "Cat Ear Goggles")
 
         add(CreateEstrogenBlocks.Centrifuge, "Centrifuge")
         add("block.createestrogen.centrifuge.tooltip", "This machine only accepts _input_ from the _bottom_ and _output_ from the _top_.")

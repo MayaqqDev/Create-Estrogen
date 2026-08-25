@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "createestrogen:black",
+    "createestrogen:brown",
+    "createestrogen:calico",
+    "createestrogen:grey",
+    "createestrogen:orange",
+    "createestrogen:white"
+  ]
+}
