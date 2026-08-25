@@ -1,0 +1,18 @@
+{
+  "damage": 0,
+  "items": "estrogen:estrogen_pill",
+  "knockback": 0.05,
+  "on_entity_hit": {
+    "type": "create:potion_effect",
+    "effect": "estrogen:estrogen",
+    "level": 1,
+    "recoverable": true,
+    "ticks": 100
+  },
+  "reload_ticks": 10,
+  "render_mode": {
+    "type": "create:tumble"
+  },
+  "sound_pitch": 1.3,
+  "velocity_multiplier": 1.45
+}
