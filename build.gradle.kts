@@ -170,7 +170,7 @@ publishMods {
     val jar = tasks.named<Jar>("includeJar").flatMap(Jar::getArchiveFile)
 
     curseforge("curseforge") {
-        accessToken = providers.environmentVariable("CURSEFORGE_TOKEN")
+        accessToken = properties["curseforge_token"]?.toString()
         minecraftVersions.add("1.21.1")
         projectId = "1272015"
         javaVersions.add(JavaVersion.VERSION_21)
@@ -184,7 +184,7 @@ publishMods {
     }
 
     modrinth("modrinth") {
-        accessToken = providers.environmentVariable("MODRINTH_TOKEN")
+        accessToken = properties["modrinth_token"]?.toString()
         projectId = "OEAJaSuI"
         minecraftVersions.add("1.21.1")
         modLoaders.add(loader)
